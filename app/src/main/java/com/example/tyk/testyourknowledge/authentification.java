@@ -2,11 +2,9 @@ package com.example.tyk.testyourknowledge;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.icu.text.DateFormat;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
@@ -85,7 +83,9 @@ public class authentification extends AppCompatActivity implements View.OnClickL
             loginButton.setEnabled(true);
 
             if(ok){
+               // Intent intent = new Intent(activity, menu.class);
                 Intent intent = new Intent(activity, menu.class);
+
                 activity.startActivity(intent);
             }else{
                 Toast.makeText(authentification.this, failedConnectionMessage, Toast.LENGTH_LONG).show();

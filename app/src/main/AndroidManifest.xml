@@ -19,8 +19,8 @@
         </activity>
         <activity
             android:name=".menu"
-            android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_mon_menu"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

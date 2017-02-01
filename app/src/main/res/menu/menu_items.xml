@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content">
+
+    <group android:checkableBehavior="single"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <item
+            android:id="@+id/nav_profil"
+            android:icon="@drawable/ic_home_profil"
+            android:title="Profil"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+        <item
+            android:id="@+id/nav_cours"
+            android:icon="@drawable/book"
+            android:title="Cours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <item
+            android:id="@+id/nav_stats"
+            android:icon="@drawable/ic_home_stats"
+            android:title="Statistiques"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+        <item
+            android:id="@+id/nav_pref"
+            android:icon="@drawable/ic_home_pref"
+            android:title="Options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_home_exit"
+            android:title="Déconnexion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </group>
+
+</menu>
