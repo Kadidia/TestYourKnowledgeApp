@@ -20,6 +20,14 @@
         <activity
             android:name=".menu"
             android:label="@string/title_activity_mon_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".quiz_eleve"
+            android:label="@string/title_activity_quiz_eleve"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".profil"
+            android:label="@string/title_activity_profil"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

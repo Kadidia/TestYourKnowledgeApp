@@ -1,6 +1,8 @@
 package com.example.tyk.testyourknowledge;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -55,9 +57,10 @@ public class menu extends AppCompatActivity
             @Override
             public void onItemClick( AdapterView<?> parent, View view, int position, long id) {
                 String itemValue = (String) parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(),
-                        "Position :"+position+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
-                        .show();
+                if(itemValue == "Mes Quiz"){
+                    Intent intent = new Intent(getApplicationContext(), quiz_eleve.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -109,9 +112,11 @@ public class menu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-      /*  if (id == R.id.nav_camera) {
+       if (id == R.id.nav_profil) {
+           Intent intent = new Intent(getApplicationContext(), profil.class);
+           startActivity(intent);
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } /*else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
 
