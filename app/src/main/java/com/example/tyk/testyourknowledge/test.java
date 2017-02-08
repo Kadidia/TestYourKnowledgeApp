@@ -5,9 +5,9 @@ public class test {
     private  String sheg;
     private  String sheg2;
 
-    public test(String sheg, String shegg) {
+    public test(String sheg, String shega) {
          this.sheg = sheg;
-         this.sheg2 = shegg;
+         this.sheg2 = shega;
 
 
     }
