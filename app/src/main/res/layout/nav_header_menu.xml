@@ -11,7 +11,7 @@
     android:background="@drawable/fond4"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:gravity="bottom"
-    tools:showIn="@layout/activity_menu">
+    >
 
 
     <LinearLayout
