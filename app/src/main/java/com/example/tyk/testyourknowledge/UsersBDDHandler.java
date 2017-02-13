@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.pm.ProviderInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -25,6 +26,29 @@ public class UsersBDDHandler extends SQLiteOpenHelper{
     private static final String USER_INFO_LOGIN = "LOGIN";
     private static final String USER_INFO_PASSWORD = "PASSWORD";
 
+    private static final String SCHOOL_INFO_KEY = "id";
+    private static final String SCHOOL_INFO_NAME = "NAME";
+
+    private static final String PROMOTION_INFO_KEY = "id";
+    private static final String PROMOTION_INFO_ID_SCHOOL = "ID_SCHOOL";
+
+    private static final String CLASS_INFO_KEY = "id";
+    private static final String CLASS_INFO_ID_PROMOTION = "ID_PROMOTION";
+    private static final String CLASS_INFO_NAME = "NAME";
+
+    private static final String MODULE_INFO_KEY = "id";
+    private static final String MODULE_INFO_NAME = "NAME";
+
+    private static final String COURSE_INFO_KEY = "id";
+    private static final String COURSE_INFO_ID_USER = "ID_USER";
+    private static final String COURSE_INFO_ID_MODULE = "ID_MODULE";
+    private static final String COURSE_INFO_NAME = "NAME";
+    private static final String COURSE_INFO_SUMMARY = "SUMMARY";
+
+   /* private static final String COURSE_USER_INFO_KEY = "id"; */
+    private static final String COURSE_USER_INFO_ID_USER = "ID_USER";
+    private static final String COURSE_USER_INFO_ID_COURSE = "ID_COURSE";
+
     private static final String TYPE_INTEGER = " INTEGER";
     private static final String TYPE_TEXT = " TEXT";
 
@@ -36,6 +60,53 @@ public class UsersBDDHandler extends SQLiteOpenHelper{
             USER_INFO_LASTNAME + TYPE_TEXT + "," +
             USER_INFO_LOGIN + TYPE_INTEGER + "," +
             USER_INFO_PASSWORD + TYPE_TEXT + ");";
+
+    private static final String SCHOOL_INFO_TABLE_NAME = "SCHOOL";
+    private static final String TABLE_SCHOOL_INFO_CREATE =
+            "CREATE TABLE " + SCHOOL_INFO_TABLE_NAME + " (" +
+            SCHOOL_INFO_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            SCHOOL_INFO_NAME + TYPE_TEXT + ");";
+
+    private static final String PROMOTION_INFO_TABLE_NAME = "PROMOTION";
+    private static final String TABLE_PROMOTION_INFO_CREATE =
+            "CREATE TABLE " + PROMOTION_INFO_TABLE_NAME + " (" +
+            PROMOTION_INFO_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            PROMOTION_INFO_ID_SCHOOL + TYPE_INTEGER + "," +
+            " FOREIGN KEY (" + PROMOTION_INFO_ID_SCHOOL + ") REFERENCES " + SCHOOL_INFO_TABLE_NAME + "(" + SCHOOL_INFO_KEY + "));";
+
+    private static final String CLASS_INFO_TABLE_NAME = "CLASS";
+    private static final String TABLE_CLASS_INFO_CREATE =
+            "CREATE TABLE " + CLASS_INFO_TABLE_NAME + " (" +
+            CLASS_INFO_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            CLASS_INFO_ID_PROMOTION + TYPE_INTEGER + "," +
+            CLASS_INFO_NAME + TYPE_TEXT + "," +
+            " FOREIGN KEY (" +  CLASS_INFO_ID_PROMOTION + ") REFERENCES " + PROMOTION_INFO_TABLE_NAME + "(" + PROMOTION_INFO_KEY + "));";
+
+    private static final String MODULE_INFO_TABLE_NAME = "MODULE";
+    private static final String TABLE_MODULE_INFO_CREATE =
+            "CREATE TABLE " + MODULE_INFO_TABLE_NAME + " (" +
+            MODULE_INFO_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            MODULE_INFO_NAME + TYPE_TEXT + ");";
+
+    private static final String COURSE_INFO_TABLE_NAME = "COURSE";
+    private static final String COURSE_INFO_TABLE_CREATE =
+            "CREATE TABLE " + COURSE_INFO_TABLE_NAME + " (" +
+            COURSE_INFO_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COURSE_INFO_ID_USER + TYPE_INTEGER + "," +
+            COURSE_INFO_ID_MODULE + TYPE_INTEGER + "," +
+            COURSE_INFO_NAME + TYPE_TEXT + "," +
+            COURSE_INFO_SUMMARY + TYPE_TEXT + "," +
+            " FOREIGN KEY (" +  COURSE_INFO_ID_MODULE + ") REFERENCES " + MODULE_INFO_TABLE_NAME + "(" + MODULE_INFO_KEY + ")" +
+            " FOREIGN KEY (" +  COURSE_INFO_ID_USER + ") REFERENCES " + USER_INFO_TABLE_NAME + "(" + USER_INFO_KEY + "));";
+
+    private static final String COURSE_USER_INFO_TABLE_NAME = "COURSE_USER";
+    private static final String COURSE_USER_INFO_TABLE_CREATE =
+            "CREATE TABLE " + COURSE_USER_INFO_TABLE_NAME + " (" +
+            COURSE_USER_INFO_ID_USER + TYPE_INTEGER + "," +
+            COURSE_USER_INFO_ID_COURSE + TYPE_INTEGER + "," +
+            " FOREIGN KEY (" +  COURSE_USER_INFO_ID_USER + ") REFERENCES " + USER_INFO_TABLE_NAME + "(" + USER_INFO_KEY + ")" +
+            " FOREIGN KEY (" +  COURSE_USER_INFO_ID_COURSE + ") REFERENCES " + COURSE_INFO_TABLE_NAME + "(" + COURSE_INFO_KEY + "));";
+
 
     private static final String TABLE_USER_INFO_DELETE = "DROP TABLE IF EXISTS " + USER_INFO_TABLE_NAME;
 
@@ -89,18 +160,25 @@ public class UsersBDDHandler extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public boolean isUserExist(User user){
+    public User isUserExist(User user){
         SQLiteDatabase db = this.getWritableDatabase();
         List<User> users = getAllUsers(db);
 
-        if(users.contains(user)){
-            db.close();
-            return true;
+        for(User oneUser : users){
+            if(oneUser.equals(user)) {
+                db.close();
+                return oneUser;
+            }
         }
-        else{
+
+       /* if(users.contains(user)){
             db.close();
-            return false;
-        }
+            return user;
+        }*/
+        //else{
+            db.close();
+            return null;
+        //}
     }
 
     private List<User> getAllUsers(SQLiteDatabase db) {

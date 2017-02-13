@@ -2,6 +2,7 @@ package com.example.tyk.testyourknowledge;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -28,6 +29,7 @@ public class menu extends AppCompatActivity
     private ListView items;
     private homePageAdapter homePageAdapter;
     TextView toolbar_title;
+    TextView userfirstname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,20 @@ public class menu extends AppCompatActivity
         toolbar_title = (TextView) toolbar.findViewById(R.id.welcomeTextView);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+
+        userfirstname = (TextView) findViewById(R.id.user_firstname);
+        Log.i("NAME", "1");
+
+       /* Bundle dataExtras = getIntent().getExtras();
+        Log.i("NAME", "2");
+       // Log.i("NAME", dataExtras.getString("userfirstname"));
+        String firstName = dataExtras.getString("userFirstName");
+        Log.i("first", firstName);
+        //userfirstname.setText(firstName);
+        //Log.i("NAME", dataExtras.getString("userfirstname"));
+
+        //Log.i("NAME 5", userfirstname.toString()); */
+
 
 
         List<String> items_list = new ArrayList<String>();
@@ -58,6 +74,7 @@ public class menu extends AppCompatActivity
             @Override
             public void onItemClick( AdapterView<?> parent, View view, int position, long id) {
                 String itemValue = (String) parent.getItemAtPosition(position);
+<<<<<<< HEAD
                 Toast.makeText(getApplicationContext(),
                         "Position :"+position+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
                         .show();
@@ -68,6 +85,11 @@ public class menu extends AppCompatActivity
                         startActivity(courseActivity);break;
                     default:
                         Toast.makeText(menu.this,"Page not found", Toast.LENGTH_SHORT);break;
+=======
+                if(itemValue == "Mes Quiz"){
+                    Intent intent = new Intent(getApplicationContext(), quiz_eleve.class);
+                    startActivity(intent);
+>>>>>>> master
                 }
             }
         });
@@ -123,9 +145,11 @@ public class menu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-      /*  if (id == R.id.nav_camera) {
+       if (id == R.id.nav_profil) {
+           Intent intent = new Intent(getApplicationContext(), profil.class);
+           startActivity(intent);
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } /*else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
 

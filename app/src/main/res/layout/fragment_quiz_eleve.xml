@@ -1,0 +1,255 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.tyk.testyourknowledge.quiz_eleve$PlaceholderFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="111dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/efrei_ext_logo"
+            android:layout_gravity="center"
+            android:layout_alignBottom="@+id/nomTextViewID"/>
+
+        <TextView
+            android:id="@+id/section_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/chapitre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chapitre 1 : "
+                android:textSize="23dp"
+                android:textColor="#048B9A"/>
+
+            <TextView
+                android:id="@+id/cours_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Applications web "
+                android:textSize="23dp"
+                android:textColor="#048B9A"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/question1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Question 1 : "
+                android:textColor="#048B9A"/>
+
+            <TextView
+                android:id="@+id/question1_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Java est un langage..."
+                android:textStyle="bold|italic"
+                android:layout_marginTop="15dp"
+                android:textColor="#048B9A"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:fontFamily="sans-serif-medium" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioGroup
+                android:id="@+id/reponse1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/l_interpreté"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Interpreté"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/l_compilé"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Compilé" />
+
+                <RadioButton
+                    android:id="@+id/l_deux"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Compilé" />
+
+                <RadioButton
+                    android:id="@+id/l_aucun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ni l'un, ni l'autre" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/question2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Question 2 : "
+                android:textColor="#048B9A"/>
+
+            <TextView
+                android:id="@+id/question2_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quelle phrase au sujet de Java est correcte ?"
+                android:textStyle="bold|italic"
+                android:layout_marginTop="15dp"
+                android:textColor="#048B9A"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioGroup
+                android:id="@+id/reponse2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/r2_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="En Java, les types de base ne sont pas des objets"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/r2_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Java supporte l'héritage multiple entre les classes" />
+
+                <RadioButton
+                    android:id="@+id/r2_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="En Java, on peut affecter soi-même l'adresse d'un pointeur" />
+
+                <RadioButton
+                    android:id="@+id/r2_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Java supporte la surcharge des opérateurs" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/question3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Question 3 : "
+                android:textColor="#048B9A"/>
+
+            <TextView
+                android:id="@+id/question3_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comment indiquer qu'une classe A hérite d'une classe B ?"
+                android:textStyle="bold|italic"
+                android:layout_marginTop="15dp"
+                android:textColor="#048B9A"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioGroup
+                android:id="@+id/reponse3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/r3_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="class A ::B"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/r3_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="class A extends B" />
+
+                <RadioButton
+                    android:id="@+id/r3_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="class A implements B" />
+
+                <RadioButton
+                    android:id="@+id/r3_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="class A inherit B" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:id="@+id/b_signin"
+            android:onClick="onClick"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:text="Soumettre"
+            android:background="#80D0D0"/>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
