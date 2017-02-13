@@ -1,5 +1,6 @@
 package com.example.tyk.testyourknowledge;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.widget.AdapterView.*;
 
 public class menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,15 +54,26 @@ public class menu extends AppCompatActivity
         items.setAdapter(homePageAdapter);
         Log.i("datas", "t3");
 
-        items.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        items.setOnItemClickListener(new OnItemClickListener(){
             @Override
             public void onItemClick( AdapterView<?> parent, View view, int position, long id) {
                 String itemValue = (String) parent.getItemAtPosition(position);
                 Toast.makeText(getApplicationContext(),
                         "Position :"+position+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
                         .show();
+
+                switch (itemValue){
+                    case "Mes cours":
+                        Intent courseActivity = new Intent(menu.this, CoursePage.class);
+                        startActivity(courseActivity);break;
+                    default:
+                        Toast.makeText(menu.this,"Page not found", Toast.LENGTH_SHORT);break;
+                }
             }
         });
+
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
