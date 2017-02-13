@@ -27,6 +27,7 @@ public class menu extends AppCompatActivity
     private ListView items;
     private homePageAdapter homePageAdapter;
     TextView toolbar_title;
+    TextView userfirstname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,20 @@ public class menu extends AppCompatActivity
         toolbar_title = (TextView) toolbar.findViewById(R.id.welcomeTextView);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+
+        userfirstname = (TextView) findViewById(R.id.user_firstname);
+        Log.i("NAME", "1");
+
+       /* Bundle dataExtras = getIntent().getExtras();
+        Log.i("NAME", "2");
+       // Log.i("NAME", dataExtras.getString("userfirstname"));
+        String firstName = dataExtras.getString("userFirstName");
+        Log.i("first", firstName);
+        //userfirstname.setText(firstName);
+        //Log.i("NAME", dataExtras.getString("userfirstname"));
+
+        //Log.i("NAME 5", userfirstname.toString()); */
+
 
 
         List<String> items_list = new ArrayList<String>();

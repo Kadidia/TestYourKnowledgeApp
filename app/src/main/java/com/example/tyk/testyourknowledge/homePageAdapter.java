@@ -21,6 +21,7 @@ public class homePageAdapter extends ArrayAdapter<String> {
 
     public homePageAdapter(Context context, List<String> datas){
         super(context, 0, datas);
+
         Log.i("tesr", "ok1");
         this.context = context;
         for(String s : datas){

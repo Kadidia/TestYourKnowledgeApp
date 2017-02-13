@@ -38,8 +38,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:id="@+id/menuHeaderText"
-                android:text="Kadidiatou"
+                android:id="@+id/user_firstname"
+                android:text=" "
                 android:textColor="#ffffff"
                 />
 
