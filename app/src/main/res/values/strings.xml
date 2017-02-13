@@ -14,14 +14,14 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-<<<<<<< HEAD
+
     <string name="MyCourse">My Courses</string>
     <string name="Newquiztxt">New Quiz</string>
-=======
+
     <string name="title_activity_quiz_eleve">quiz_eleve</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_profil">Belinda Lor</string>
     <string name="user_firstname">Anonyme</string>
->>>>>>> master
+
 
 </resources>
