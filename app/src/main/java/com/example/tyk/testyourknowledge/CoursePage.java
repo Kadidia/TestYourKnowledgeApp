@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -58,6 +59,14 @@ public class CoursePage extends Activity {
 
         courseItems.setAdapter(courseAdapter);
         Log.i("test", "ok3");
+        courseItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+               Intent newQuizActivity = new Intent(CoursePage.this, NewQuizzPage.class);
+                startActivity(newQuizActivity);
+            }
+        });
 
     }
 
