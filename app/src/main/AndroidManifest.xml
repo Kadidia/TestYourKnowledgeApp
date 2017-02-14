@@ -29,6 +29,10 @@
             android:name=".profil"
             android:label="@string/title_activity_profil"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".CoursePage"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".NewQuizzPage"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
