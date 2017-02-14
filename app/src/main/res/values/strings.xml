@@ -22,6 +22,7 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_profil">Belinda Lor</string>
     <string name="user_firstname">Anonyme</string>
+    <string name="Question">Question</string>
 
 
 </resources>

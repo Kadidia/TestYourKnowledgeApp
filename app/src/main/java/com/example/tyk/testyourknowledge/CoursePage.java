@@ -13,23 +13,15 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.tyk.testyourknowledge.MakeQuizzPage.cptQuestion;
+
 /**
  * Created by shegun on 12/02/2017.
  */
 
 public class CoursePage extends Activity {
 
-   /* ImageView plus = null;
 
-    plus = (ImageView) findViewById(R.id.plus_button);
-
-    plus.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent newQuiz = new Intent(CoursePage.this, NewQuizzPage.class);
-            startActivity(newQuiz);
-        }
-    });*/
     ListView courseItems =null;
     CoursePageAdapter courseAdapter;
 
@@ -37,7 +29,6 @@ public class CoursePage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
-
 
 
         courseItems = (ListView) findViewById(R.id.ListCourseView);
