@@ -1,21 +1,41 @@
 package com.example.tyk.testyourknowledge;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.List;
+
+import static com.example.tyk.testyourknowledge.MakeQuizzPage.pack;
 
 /**
  * Created by shegd on 15/02/2017.
  */
 public class QuizLook extends Activity {
+
+    TextView questionEdit;
+    LinearLayout looklayout;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizlook);
 
+        questionEdit = (TextView) findViewById(R.id.questionLook);
+
         Intent quizDone = getIntent();
-        //List<Question> quiz = quizDone.getExtras(MakeQuizzPage.pack);
+        List<Question> quiz = quizDone.getParcelableArrayListExtra(pack);
+        for(Question question: quiz){
+
+            LayoutInflater layoutInflater =
+                    (LayoutInflater)getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            final View lookView = layoutInflater.inflate(R.layout.rowlook, null);
+        }
 
         /* choice_plus.setOnClickListener(new View.OnClickListener() {
             @Override
