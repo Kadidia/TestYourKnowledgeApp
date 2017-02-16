@@ -28,10 +28,20 @@
         <activity
             android:name=".profil"
             android:label="@string/title_activity_profil"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".CoursePage"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".NewQuizzPage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CoursePage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NewQuizzPage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".modules_page"
+            android:label="@string/title_activity_modules_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".software_quality_quiz"
+            android:label="@string/title_activity_software_quality_quiz"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

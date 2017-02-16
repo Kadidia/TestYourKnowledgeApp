@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-public class quiz_eleve extends menu {
+public class quiz_eleve extends menu_principal{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
