@@ -30,7 +30,7 @@ public class Question implements Parcelable {
         choices = in.createStringArrayList();
     }
 
-    public static final Parcelable.Creator<Question> creator = new Parcelable.Creator<Question>() {
+    public static final Parcelable.Creator<Question> QUESTION_CREATOR = new Parcelable.Creator<Question>() {
         @Override
         public Question createFromParcel(Parcel in) {
             return new Question(in);

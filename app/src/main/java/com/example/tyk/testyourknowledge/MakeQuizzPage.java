@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +28,7 @@ import java.util.List;
 public class MakeQuizzPage extends Activity {
 
     public  final  static String pack = "com.example.tyk.testyourknowledge.pack";
+    private static final int CHOOSE_BUTTON_REQUEST = 0;
     //variables du layout
     EditText question;
     EditText response;
@@ -39,7 +43,7 @@ public class MakeQuizzPage extends Activity {
     LinearLayout newChoiceLayout ;
 
 
-     List<Question> questionsList;
+     List<Question> questionsList = new ArrayList<Question>();
 
     //nouvelles variables
 
@@ -48,7 +52,7 @@ public class MakeQuizzPage extends Activity {
     private static int cptQuestion = 1;
 
 
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_makequiz);
 
@@ -64,9 +68,11 @@ public class MakeQuizzPage extends Activity {
 
         newChoiceLayout = (LinearLayout) findViewById(R.id.newChoiceLayout);
 
-        questionsList = new ArrayList<Question>();
+
 
         questionText.setText("Question "+cptQuestion+" : ");
+
+        //questionsList = new ArrayList<Question>();
 
         choice_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,10 +99,13 @@ public class MakeQuizzPage extends Activity {
             }
         });
 
+
         newquestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cptQuestion++;
+
+
 
                 if(question.getText().toString().length()>0 && response.getText().toString().length()>0
                         &&choice.getText().toString().length() >0  ){
@@ -106,6 +115,7 @@ public class MakeQuizzPage extends Activity {
                     choicesList.add(choice.getText().toString());
                     choicesList.add(choice2.getText().toString());
 
+                   //Log.i("look", choice.getText().toString());
 
 
               /*  for(int i =0; i< cptChoice; i++){
@@ -121,10 +131,18 @@ public class MakeQuizzPage extends Activity {
                 }*/
                     questionsList.add(new Question(question.getText().toString(),
                             response.getText().toString(),choicesList));
-                    //Log.i("question", newChoiceEdit.getText().toString());
+                   Log.i("look", "la taille est de "+questionsList.size() );
                     Intent sameActivity = new Intent(MakeQuizzPage.this, MakeQuizzPage.class);
 
-                    startActivity(sameActivity);
+                   /* if(getIntent().toString() != "newQuiz"){
+                        questionsList =getIntent().getExtras().getParcelableArrayList(pack);
+                    }*/
+
+
+                   sameActivity.putExtra(MakeQuizzPage.pack, (Serializable) questionsList);
+                    setResult(RESULT_OK, sameActivity);
+                    finish();
+                    startActivityForResult(sameActivity,CHOOSE_BUTTON_REQUEST);
                 }else {
                     Toast.makeText(getApplicationContext(),"Fields Question response and choice need to be filled", Toast.LENGTH_SHORT).show();
                 }
@@ -133,12 +151,21 @@ public class MakeQuizzPage extends Activity {
 
         });
 
+       // Log.i("look", String.valueOf(questionsList.get(0)));
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent quizDone = new Intent(MakeQuizzPage.this, QuizLook.class);
 
-                quizDone.putExtra(MakeQuizzPage.pack, (Parcelable) questionsList);
+                List<String> choicesList = new ArrayList<String>();
+                choicesList.add(choice.getText().toString());
+                choicesList.add(choice2.getText().toString());
+                questionsList.add(new Question(question.getText().toString(),
+                        response.getText().toString(),choicesList));
+                Log.i("look", questionsList.get(0).getQuestion().toString() );
+
+                Intent quizDone = new Intent(MakeQuizzPage.this, QuizLook.class);
+                quizDone.putExtra(MakeQuizzPage.pack, (Serializable) questionsList);
                 startActivity(quizDone);
                 // Boite de dialog mais pas le temps
             }
@@ -147,6 +174,18 @@ public class MakeQuizzPage extends Activity {
 
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // On vérifie tout d'abord à quel intent on fait référence ici à l'aide de notre identifiant
+        if (requestCode == CHOOSE_BUTTON_REQUEST) {
+            // On vérifie aussi que l'opération s'est bien déroulée
+            if (resultCode == RESULT_OK) {
+                // On affiche le bouton qui a été choisi
+                Toast.makeText(this, "Vous avez choisi le bouton " , Toast.LENGTH_SHORT).show();
+           Bundle datas = data.getExtras();
+                questionsList = datas.getParcelableArrayList(pack);
+            }
+        }
+    }
 
 }
