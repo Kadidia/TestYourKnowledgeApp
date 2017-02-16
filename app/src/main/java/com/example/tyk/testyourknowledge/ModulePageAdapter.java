@@ -8,23 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
 /**
- * Created by shegd on 13/02/2017.
+ * Created by Axa on 14/02/2017.
  */
 
-public class CoursePageAdapter extends ArrayAdapter<String> {
+public class ModulePageAdapter extends ArrayAdapter<Module> {
+    private Context context;
 
-    private  Context context;
-
-    public CoursePageAdapter(Context context, List<String> datas) {
-
-        super(context, 0, datas);    Log.i("test", "ok1");
-
+    public ModulePageAdapter(Context context, List<Module> datas) {
+        super(context, 0, datas);
         this.context = context;
 
 
@@ -36,17 +32,17 @@ public class CoursePageAdapter extends ArrayAdapter<String> {
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.rowhomepage, parent, false);
         }
-        ItemViewHolder itemViewHolder = (ItemViewHolder) convertView.getTag();
+        ModulePageAdapter.ItemViewHolder itemViewHolder = (ModulePageAdapter.ItemViewHolder) convertView.getTag();
 
         if(itemViewHolder == null){
-            itemViewHolder = new ItemViewHolder();
+            itemViewHolder = new ModulePageAdapter.ItemViewHolder();
             itemViewHolder.courseName = (TextView) convertView.findViewById(R.id.itemName);
             itemViewHolder.courseImage = (ImageView) convertView.findViewById(R.id.image);
             convertView.setTag(itemViewHolder);
         }
-        String data = getItem(position);
+        Module data = getItem(position);
 
-        itemViewHolder.courseName.setText(data);
+        itemViewHolder.courseName.setText(data.getName());
         itemViewHolder.courseImage.setImageResource(R.drawable.book);
 
         return convertView;
@@ -58,4 +54,5 @@ public class CoursePageAdapter extends ArrayAdapter<String> {
         public TextView courseName;
         public ImageView  courseImage;
     }
+
 }

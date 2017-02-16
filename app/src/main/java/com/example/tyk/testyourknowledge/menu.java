@@ -17,19 +17,20 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.widget.AdapterView.*;
 
-public class menu extends AppCompatActivity
+public class menu extends menu_principal
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ListView items;
     private homePageAdapter homePageAdapter;
     TextView toolbar_title;
-    TextView userfirstname;
+    TextView userFirstName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class menu extends AppCompatActivity
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
-        userfirstname = (TextView) findViewById(R.id.user_firstname);
+       // userfirstname = (TextView) findViewById(R.id.user_firstname);
         Log.i("NAME", "1");
 
        /* Bundle dataExtras = getIntent().getExtras();
@@ -52,6 +53,9 @@ public class menu extends AppCompatActivity
         //Log.i("NAME", dataExtras.getString("userfirstname"));
 
         //Log.i("NAME 5", userfirstname.toString()); */
+
+        Bundle dataExtras = getIntent().getExtras();
+        String firstName = dataExtras.getString("userFirstName");
 
 
 
@@ -84,7 +88,7 @@ public class menu extends AppCompatActivity
                         Intent courseActivity = new Intent(menu.this, CoursePage.class);
                         startActivity(courseActivity);break;
                     case "Mes Quiz":
-                        Intent intent = new Intent(getApplicationContext(), quiz_eleve.class);
+                        Intent intent = new Intent(getApplicationContext(), modules_page.class);
                         startActivity(intent);break;
 
                     default:
@@ -105,6 +109,11 @@ public class menu extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View header = navigationView.getHeaderView(0);
+        userFirstName = (TextView) header.findViewById(R.id.user_firstName);
+        userFirstName.setText(firstName);
+
     }
 
     @Override
@@ -145,13 +154,17 @@ public class menu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-       if (id == R.id.nav_profil) {
-           Intent intent = new Intent(getApplicationContext(), profil.class);
-           startActivity(intent);
-            // Handle the camera action
-        } /*else if (id == R.id.nav_gallery) {
+        ViewFlipper vf = (ViewFlipper) findViewById(R.id.vf);
 
-        } else if (id == R.id.nav_slideshow) {
+       if (id == R.id.nav_profil) {
+           //Intent intent = new Intent(getApplicationContext(), profil.class);
+           //startActivity(intent);
+           vf.setDisplayedChild(1);
+            // Handle the camera action
+        } else if (id == R.id.nav_exit) {
+           Intent intent = new Intent(getApplicationContext(), authentification.class);
+           startActivity(intent);
+        } /*else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
 
