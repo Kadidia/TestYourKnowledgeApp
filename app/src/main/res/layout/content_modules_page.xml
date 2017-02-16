@@ -26,12 +26,10 @@
             android:layout_centerHorizontal="true" />
 
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="397dp"
-                android:id="@+id/list_item">
-
-            </ListView>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="397dp"
+            android:id="@+id/modules_list"></ListView>
 
     </LinearLayout>
 

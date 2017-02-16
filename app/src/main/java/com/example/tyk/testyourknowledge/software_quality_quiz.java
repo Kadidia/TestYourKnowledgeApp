@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-public class quiz_eleve extends menu_principal{
+public class software_quality_quiz extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -39,10 +39,9 @@ public class quiz_eleve extends menu_principal{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_eleve);
+        setContentView(R.layout.activity_software_quality_quiz);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -55,14 +54,14 @@ public class quiz_eleve extends menu_principal{
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-      /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });*/
+        });
 
     }
 
@@ -70,7 +69,7 @@ public class quiz_eleve extends menu_principal{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_quiz_eleve, menu);
+        getMenuInflater().inflate(R.menu.menu_software_quality_quiz, menu);
         return true;
     }
 
@@ -117,9 +116,9 @@ public class quiz_eleve extends menu_principal{
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_quiz_eleve, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_software_quality_quiz, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
     }
@@ -151,11 +150,11 @@ public class quiz_eleve extends menu_principal{
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "JAVA";
+                    return "e_Marketing";
                 case 1:
-                    return "WEB SERVICE";
+                    return "Télécoms et internet";
                 case 2:
-                    return "BASE DE DONNEES";
+                    return "NodeJS";
             }
             return null;
         }

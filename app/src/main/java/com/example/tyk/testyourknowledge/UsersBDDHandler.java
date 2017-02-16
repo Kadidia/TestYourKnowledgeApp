@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 /**
  * Created by Axa on 29/01/2017.
@@ -17,6 +18,7 @@ import android.util.Log;
 
 public class UsersBDDHandler extends SQLiteOpenHelper{
     private ArrayList<User> users;
+    private ArrayList<Module> modules;
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "ConnectionDB";
 
@@ -109,6 +111,8 @@ public class UsersBDDHandler extends SQLiteOpenHelper{
 
 
     private static final String TABLE_USER_INFO_DELETE = "DROP TABLE IF EXISTS " + USER_INFO_TABLE_NAME;
+    private static final String TABLE_MODULE_INFO_DELETE = "DROP TABLE IF EXISTS " + MODULE_INFO_TABLE_NAME;
+
 
     public UsersBDDHandler( Context context){
 
@@ -118,14 +122,26 @@ public class UsersBDDHandler extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TABLE_USER_INFO_CREATE);
-        String count = "SELECT count(*) FROM " + USER_INFO_TABLE_NAME;
+
+        tableCreation(db, TABLE_USER_INFO_CREATE, USER_INFO_TABLE_NAME,"users");
+        tableCreation(db, TABLE_MODULE_INFO_CREATE, MODULE_INFO_TABLE_NAME,"modules");
+    }
+
+    public void tableCreation (SQLiteDatabase db, String tableCreate, String tableName, String name){
+
+        db.execSQL(tableCreate);
+        String count = "SELECT count(*) FROM " + tableName;
 
         Cursor cursor = db.rawQuery(count, null);
         cursor.moveToFirst();
         int icount = cursor.getInt(0);
-
-        if(icount <= 0) initializeUsersDataBase(db);
+        if(icount <= 0){
+            if(name == "users"){
+                initializeUsersDataBase(db);
+            }if(name == "modules"){
+                initializeModulesDataBase(db);
+            }
+        }
     }
 
     private void initializeUsersDataBase(SQLiteDatabase db) {
@@ -153,17 +169,36 @@ public class UsersBDDHandler extends SQLiteOpenHelper{
 
     }
 
+    private void initializeModulesDataBase(SQLiteDatabase db){
+        modules = new ArrayList<Module>();
+        modules.add(new Module("Formation générale"));
+        modules.add(new Module("Complément et ouverture"));
+        modules.add(new Module("Software Quality"));
+        modules.add(new Module("Fundamentals"));
+
+        for(Module module: modules){
+            addModule(module, db);
+        }
+
+    }
+
+    private void addModule(Module module, SQLiteDatabase db){
+        ContentValues values = new ContentValues();
+        values.put(MODULE_INFO_NAME, module.getName());
+        db.insert(MODULE_INFO_TABLE_NAME, null, values);
+    }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(TABLE_USER_INFO_DELETE);
+        db.execSQL(TABLE_MODULE_INFO_DELETE);
         onCreate(db);
     }
 
     public User isUserExist(User user){
         SQLiteDatabase db = this.getWritableDatabase();
         List<User> users = getAllUsers(db);
-
         for(User oneUser : users){
             if(oneUser.equals(user)) {
                 db.close();
@@ -171,17 +206,11 @@ public class UsersBDDHandler extends SQLiteOpenHelper{
             }
         }
 
-       /* if(users.contains(user)){
-            db.close();
-            return user;
-        }*/
-        //else{
             db.close();
             return null;
-        //}
     }
 
-    private List<User> getAllUsers(SQLiteDatabase db) {
+    public List<User> getAllUsers(SQLiteDatabase db) {
         List<User> list = new ArrayList<User>();
         String selectQuery = ("SELECT * FROM ") + USER_INFO_TABLE_NAME;
 
@@ -197,6 +226,24 @@ public class UsersBDDHandler extends SQLiteOpenHelper{
                 list.add(user);
             }while (cursor.moveToNext());
         }
+        return list;
+    }
+
+    public List<Module> getAllModules(){
+        List<Module> list = new ArrayList<Module>();
+        String selectQuery = ("SELECT * FROM ") + MODULE_INFO_TABLE_NAME;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if(cursor.moveToFirst()){
+            do{
+                Module module = new Module("");
+                module.setName(cursor.getString(1));
+                list.add(module);
+
+            }while (cursor.moveToNext());
+        }
+        db.close();
         return list;
     }
 }
