@@ -38,12 +38,8 @@ public class MakeQuizzPage extends Activity {
     EditText newChoiceEdit;
     LinearLayout newChoiceLayout ;
 
-    public List<Question> getQuestionsList() {
-        return questionsList;
-    }
 
      List<Question> questionsList;
-    Intent quizDone = new Intent(MakeQuizzPage.this, QuizLook.class);
 
     //nouvelles variables
 
@@ -140,6 +136,8 @@ public class MakeQuizzPage extends Activity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent quizDone = new Intent(MakeQuizzPage.this, QuizLook.class);
+
                 quizDone.putExtra(MakeQuizzPage.pack, (Parcelable) questionsList);
                 startActivity(quizDone);
                 // Boite de dialog mais pas le temps
@@ -148,9 +146,7 @@ public class MakeQuizzPage extends Activity {
 
 
     }
-    public List<Question> getQuiz(){
-        return questionsList;
-    }
+
 
 
 }
