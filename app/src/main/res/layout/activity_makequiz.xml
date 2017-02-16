@@ -89,7 +89,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:src="@drawable/plus_button3" />
+            android:src="@drawable/plus_button_2" />
 
 
 
