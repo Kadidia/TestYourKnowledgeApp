@@ -26,16 +26,19 @@ public class QuizLook extends Activity {
         setContentView(R.layout.activity_quizlook);
 
         questionEdit = (TextView) findViewById(R.id.questionLook);
+        looklayout = (LinearLayout) findViewById(R.id.newLookLayout);
 
         Intent quizDone = getIntent();
         List<Question> quiz = quizDone.getParcelableArrayListExtra(pack);
-        for(Question question: quiz){
+       /*for(Question question: quiz){
+
+            questionEdit.setText(question.getQuestion().toString());
 
             LayoutInflater layoutInflater =
                     (LayoutInflater)getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             final View lookView = layoutInflater.inflate(R.layout.rowlook, null);
-        }
+        }*/
 
         /* choice_plus.setOnClickListener(new View.OnClickListener() {
             @Override

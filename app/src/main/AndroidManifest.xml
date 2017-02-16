@@ -45,6 +45,10 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".MakeQuizzPage"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".QuizLook"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>
