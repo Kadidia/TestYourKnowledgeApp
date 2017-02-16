@@ -13,7 +13,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.tyk.testyourknowledge.MakeQuizzPage.cptQuestion;
 
 /**
  * Created by shegun on 12/02/2017.

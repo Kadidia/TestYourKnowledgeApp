@@ -1,90 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+<ScrollView
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#048B9A"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
+        android:layout_height="match_parent"
+        >
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#048B9A"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Myquiztitle"
+                android:text="@string/Question"
+                android:layout_gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="24sp"
+                android:textColor="@android:color/white"
+                android:textStyle=""/>
+
+        </android.support.v7.widget.Toolbar>
+
+
+        <TextView
+            android:id="@+id/nextQuestionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Question : "
+            android:textSize="18dp"
+            android:layout_margin="5dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <EditText
+            android:id="@+id/questionEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=""
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/Myquiztitle"
-            android:text="@string/Question"
+            android:text="Response :"
+            android:textSize="18dp"
+            android:layout_margin="5dp"
+            android:textColor="@color/green"/>
+
+        <EditText
+            android:id="@+id/reponseEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other choices:"
+            android:layout_margin="5dp"
+            android:textSize="18dp"
+            android:textColor="@color/colorAccent"/>
+        <EditText
+            android:id="@+id/choice1Edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="choice"/>
+        <EditText
+            android:id="@+id/choice2Edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="choice"/>
+        <LinearLayout
+            android:id="@+id/newChoiceLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+
+        <ImageView
+            android:id="@+id/plusChoiceBt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="24sp"
-            android:textColor="@android:color/white"
-            android:textStyle=""/>
+            android:layout_margin="10dp"
+            android:src="@drawable/plus_button3" />
 
-    </android.support.v7.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/nextQuestionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Question : "
-        android:textSize="18dp"
-        android:layout_margin="5dp"
-        android:textColor="@color/colorPrimary"/>
 
-    <EditText
-        android:id="@+id/questionEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint=""
-        />
+        <Button
+            android:id="@+id/newQuestionBt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="next question"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Response :"
-        android:textSize="18dp"
-        android:layout_margin="5dp"
-        android:textColor="@color/green"/>
+        <Button
+            android:id="@+id/finishBt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:text="Submit"/>
 
-    <EditText
-        android:id="@+id/reponseEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Other choices:"
-        android:layout_margin="5dp"
-        android:textSize="18dp"
-        android:textColor="@color/colorAccent"/>
-    <EditText
-        android:id="@+id/choice1Edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="choice"/>
-    <LinearLayout
-        android:id="@+id/newChoiceLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"></LinearLayout>
 
-    <ImageView
-        android:id="@+id/plusChoiceBt"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:src="@drawable/plus_button3" />
 
-    <Button
-        android:id="@+id/newQuestionBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="next question"/>
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
