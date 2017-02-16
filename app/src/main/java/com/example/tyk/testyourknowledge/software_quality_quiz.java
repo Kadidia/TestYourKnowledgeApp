@@ -17,9 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class software_quality_quiz extends AppCompatActivity {
+public class software_quality_quiz extends AppCompatActivity implements View.OnClickListener{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -35,6 +38,8 @@ public class software_quality_quiz extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private Button soumettreButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class software_quality_quiz extends AppCompatActivity {
         setContentView(R.layout.activity_software_quality_quiz);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -54,14 +60,16 @@ public class software_quality_quiz extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+      /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
+        soumettreButton = (Button) findViewById(R.id.b_soumettre);
+
 
     }
 
@@ -86,6 +94,18 @@ public class software_quality_quiz extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.b_soumettre :{
+                Toast.makeText(software_quality_quiz.this, "Quiz transferer avec succès !", Toast.LENGTH_LONG).show();
+                v.setEnabled(false);
+
+
+        }break;
+        }
     }
 
     /**
@@ -137,24 +157,40 @@ public class software_quality_quiz extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            //return PlaceholderFragment.newInstance(position + 1);
+
+            switch (position){
+                case 0 : return new eMarketing_quiz_fragment();
+                case 1 : return new nodeJS_quiz_fragment();
+                case 2 : return new java_quiz_fragment();
+                case 3 : return new java_quiz_fragment();
+                case 4 : return new java_quiz_fragment();
+                default:
+                    Toast.makeText(software_quality_quiz.this,"Erreur !", Toast.LENGTH_SHORT);break;
+
+            }
+            return null;
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 5;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "e_Marketing";
+                    return "e-MARKETING";
                 case 1:
-                    return "Télécoms et internet";
-                case 2:
                     return "NodeJS";
+                case 2:
+                    return "JAVA";
+                case 3:
+                    return "C#";
+                case 4:
+                    return "Web SERVICES";
             }
             return null;
         }
