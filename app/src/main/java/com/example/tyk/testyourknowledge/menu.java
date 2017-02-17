@@ -60,14 +60,13 @@ public class menu extends AppCompatActivity
                 /*Toast.makeText(getApplicationContext(),
                         "Position :"+position+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
                         .show();*/
-                switch (position){
+                switch (itemValue){
 
-                    case 4:
+                    case "Statistiques Quiz":
                         Intent statsIntent = new Intent(getApplicationContext(), stats.class);
                         startActivity(statsIntent);
+                        break;
 
-                    default:
-                        ;
 
                 }
             }
