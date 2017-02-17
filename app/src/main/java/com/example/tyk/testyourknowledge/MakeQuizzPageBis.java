@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +21,7 @@ import java.util.List;
 /**
  * Created by shegd on 14/02/2017.
  */
-public class MakeQuizzPage extends Activity {
+public class MakeQuizzPageBis extends Activity {
 
     public  final  static String pack = "com.example.tyk.testyourknowledge.pack";
     private static final int CHOOSE_BUTTON_REQUEST = 0;
@@ -72,7 +68,7 @@ public class MakeQuizzPage extends Activity {
 
         questionText.setText("Question "+cptQuestion+" : ");
 
-        //questionsList = new ArrayList<Question>();
+        questionsList = getIntent().getExtras().getParcelableArrayList(pack);
 
         choice_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,14 +128,14 @@ public class MakeQuizzPage extends Activity {
                     questionsList.add(new Question(question.getText().toString(),
                             response.getText().toString(),choicesList));
                    Log.i("look", "la taille est de "+questionsList.size() );
-                    Intent sameActivity = new Intent(MakeQuizzPage.this, MakeQuizzPageBis.class);
+                    Intent sameActivity = new Intent(MakeQuizzPageBis.this, MakeQuizzPageBis.class);
 
                    /* if(getIntent().toString() != "newQuiz"){
                         questionsList =getIntent().getExtras().getParcelableArrayList(pack);
                     }*/
 
 
-                   sameActivity.putExtra(MakeQuizzPage.pack, (Serializable) questionsList);
+                   sameActivity.putExtra(MakeQuizzPageBis.pack, (Serializable) questionsList);
                     setResult(RESULT_OK, sameActivity);
                     finish();
                     startActivityForResult(sameActivity,CHOOSE_BUTTON_REQUEST);
@@ -164,8 +160,8 @@ public class MakeQuizzPage extends Activity {
                         response.getText().toString(),choicesList));
                 Log.i("look", questionsList.get(0).getQuestion().toString() );
 
-                Intent quizDone = new Intent(MakeQuizzPage.this, QuizLook.class);
-                quizDone.putExtra(MakeQuizzPage.pack, (Serializable) questionsList);
+                Intent quizDone = new Intent(MakeQuizzPageBis.this, QuizLook.class);
+                quizDone.putExtra(MakeQuizzPageBis.pack, (Serializable) questionsList);
                 startActivity(quizDone);
                 // Boite de dialog mais pas le temps
             }

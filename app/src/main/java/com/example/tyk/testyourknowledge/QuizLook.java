@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static com.example.tyk.testyourknowledge.MakeQuizzPage.pack;
@@ -20,70 +23,55 @@ import static com.example.tyk.testyourknowledge.MakeQuizzPage.pack;
  */
 public class QuizLook extends Activity {
 
-    TextView questionEdit;
-    TextView responseEdit;
-    LinearLayout looklayout;
+
     ListView responseListView =null;
     QuizLookAdapter quizLookAdapter;
+    Button publish;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizlook);
 
-        questionEdit = (TextView) findViewById(R.id.questionLook);
-        responseEdit = (TextView) findViewById(R.id.responseLook);
-        looklayout = (LinearLayout) findViewById(R.id.newLookLayout);
+       publish = (Button)findViewById(R.id.publishBtn);
         responseListView = (ListView) findViewById(R.id.ListQuestionView);
 
         //Intent quizDone = getIntent();
         Bundle dataExtras = getIntent().getExtras();
 
-        List<Question> quiz = dataExtras.getParcelableArrayList(pack);
-        Log.i("look", "on arrive ici");
-        Log.i("look", quiz.get(0).getQuestion().toString());
+        final List<Question> quiz = dataExtras.getParcelableArrayList(pack);
+        Log.i("look", "on arrive ici la taille  est "+quiz.size());
 
-      for(Question question: quiz){
+        quizLookAdapter = new QuizLookAdapter(this, quiz);
 
-           Log.i("look", question.getQuestion().toString());
+        responseListView.setAdapter(quizLookAdapter);
 
-           // questionEdit.setText(question.getQuestion().toString());
 
-           quizLookAdapter = new QuizLookAdapter(QuizLook.this, question.getChoices());
-
-           responseListView.setAdapter(quizLookAdapter);
-
-           /* LayoutInflater layoutInflater =
-                    (LayoutInflater)getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            final View lookView = layoutInflater.inflate(R.layout.rowlook, null);
-           looklayout.addView(lookView);*/
-        }
-
-        /* choice_plus.setOnClickListener(new View.OnClickListener() {
+        publish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(QuizLook.this,NewQuizzPageBis.class);
+                //intent.putExtra(pack, quiz.toString());
+                intent.putExtra(pack, (Serializable) quiz);
 
-                cptChoice++;
-                if(cptChoice< 4){
-                  //  newChoiceEdit.setHint("choice : ");
+                startActivityForResult(intent, 0);
+            }
+        });
 
-                    LayoutInflater layoutInflater =
-                            (LayoutInflater)getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-                    final View choiceView = layoutInflater.inflate(R.layout.rowchoice, null);
-
-                    newChoiceLayout.addView(choiceView);
-                }else{
-                    Toast.makeText(getApplicationContext(), "Max choice reached",Toast.LENGTH_SHORT).show();
-                }
-
-
-
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // On vérifie tout d'abord à quel intent on fait référence ici à l'aide de notre identifiant
+        if (requestCode == 0) {
+            // On vérifie aussi que l'opération s'est bien déroulée
+            if (resultCode == RESULT_OK) {
+                // On affiche le bouton qui a été choisi
+                Toast.makeText(this, "Vous avez choisi le bouton " , Toast.LENGTH_SHORT).show();
+                Bundle datas = data.getExtras();
+                List<Question> quiz = datas.getParcelableArrayList("newQcmfile");
 
 
             }
-        });*/
-
+        }
     }
 
 }

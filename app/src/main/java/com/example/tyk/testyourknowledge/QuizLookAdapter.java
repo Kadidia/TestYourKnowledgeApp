@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import java.util.List;
@@ -13,10 +16,10 @@ import java.util.List;
 /**
  * Created by shegd on 16/02/2017.
  */
-public class QuizLookAdapter extends ArrayAdapter<String> {
+public class QuizLookAdapter extends ArrayAdapter<Question> {
 
     private Context context;
-    public QuizLookAdapter(Context context, List<String> datas) {
+    public QuizLookAdapter(Context context, List<Question> datas) {
 
         super(context,0, datas);
 
@@ -37,13 +40,24 @@ public class QuizLookAdapter extends ArrayAdapter<String> {
             itemViewHolder = new ItemViewHolder();
             itemViewHolder.question = (TextView) convertView.findViewById(R.id.questionLook);
             itemViewHolder.response = (TextView) convertView.findViewById(R.id.responseLook);
-           // itemViewHolder.response = (TextView) convertView.findViewById(R.id.responseLook);
+            itemViewHolder.choice1 = (TextView) convertView.findViewById(R.id.choice1Look);
+            itemViewHolder.choice2 = (TextView) convertView.findViewById(R.id.choice2Look);
+           // itemViewHolder.choice = (ListView) convertView.findViewById(R.id.lookListView);
         }
 
-        String data = getItem(position);
+        Question data = getItem(position);
 
-        itemViewHolder.question.setText(data);
-        itemViewHolder.response.setText(data);
+        itemViewHolder.question.setText(data.getQuestion().toString());
+        itemViewHolder.response.setText(data.getResponse().toString());
+        itemViewHolder.choice1.setText(data.getChoices().get(0).toString());
+        itemViewHolder.choice2.setText(data.getChoices().get(1).toString());
+       /* ArrayAdapter arrayAdapter;
+        ListView choiceView =null;
+        choiceView = (ListView) convertView.findViewById(R.id.lookListView);
+        arrayAdapter = new ArrayAdapter<String>(getContext(),0,data.getChoices() );
+        choiceView.setAdapter(arrayAdapter);
+
+        itemViewHolder.choice.setAdapter(arrayAdapter);*/
 
         return  convertView;
     }
@@ -51,6 +65,8 @@ public class QuizLookAdapter extends ArrayAdapter<String> {
     private class ItemViewHolder {
         public TextView question;
         public TextView response;
-       // public List<TextView>choice;
+        public TextView choice1;
+        public TextView choice2;
+        //public ListView choice;
     }
 }
