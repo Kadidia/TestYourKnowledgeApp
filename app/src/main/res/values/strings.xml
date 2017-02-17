@@ -12,5 +12,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="title_activity_stats">Stats</string>
+    <string name="title_activity_bar_chart">Stats2</string>
 
 </resources>

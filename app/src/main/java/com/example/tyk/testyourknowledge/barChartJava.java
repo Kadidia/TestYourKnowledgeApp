@@ -1,9 +1,6 @@
 package com.example.tyk.testyourknowledge;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,66 +9,74 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class menu extends AppCompatActivity
+public class barChartJava extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ListView items;
-    private homePageAdapter homePageAdapter;
     TextView toolbar_title;
+    BarChart barChart;
+    ArrayList<BarEntry> barEntries = new ArrayList<>();
+    int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_stats);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar_title = (TextView) toolbar.findViewById(R.id.welcomeTextView);
-        toolbar_title.setText(R.string.accueil);
+        toolbar_title.setText("JAVA");
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
+        barChart = (BarChart) findViewById(R.id.barChart);
+        BarDataSet barDataSet;
+        
+                barEntries.add(new BarEntry(16f, 0));
+                barEntries.add(new BarEntry(14f, 2));
+                barEntries.add(new BarEntry(10f, 4));
+                barEntries.add(new BarEntry(16f, 6));
+                barDataSet = new BarDataSet(barEntries, "JAVA");
+                barDataSet.setColors(new int[]{R.color.colorApp}, getApplicationContext());
 
-        final List<String> items_list = new ArrayList<>();
-        items_list.add("Mes cours");
-        items_list.add("Mes Quiz");
-        items_list.add("Messagerie");
-        items_list.add("Mes notes");
-        items_list.add("Statistiques Quiz");
-        items = (ListView) findViewById(R.id.list_item);
+           
+        YAxis yAxisLeft = barChart.getAxisLeft();
+        yAxisLeft.setAxisMinValue(0f);
+        yAxisLeft.setAxisMaxValue(20f);
+        yAxisLeft.setEnabled(false);
 
-        Log.i("datas", "t1");
-        homePageAdapter = new homePageAdapter(menu.this, items_list);
-        Log.i("datas", "t2");
+        YAxis yAxisRight = barChart.getAxisRight();
+        yAxisRight.setAxisMinValue(0f);
+        yAxisRight.setAxisMaxValue(20f);
+        yAxisRight.setDrawGridLines(false);
+        yAxisRight.setEnabled(false);
 
-        items.setAdapter(homePageAdapter);
-        Log.i("datas", "t3");
 
-        items.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick( AdapterView<?> parent, View view, int position, long id) {
-                String itemValue = (String) parent.getItemAtPosition(position);
-                /*Toast.makeText(getApplicationContext(),
-                        "Position :"+position+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
-                        .show();*/
-                switch (position){
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
 
-                    case 4:
-                        Intent statsIntent = new Intent(getApplicationContext(), stats.class);
-                        startActivity(statsIntent);
+        ArrayList<String> theQuiz = new ArrayList<>();
+        theQuiz.add(0, "Quiz1");
+        theQuiz.add(1, "");
+        theQuiz.add(2, "Quiz2");
+        theQuiz.add(3, "");
+        theQuiz.add(4, "Quiz3");
+        theQuiz.add(5, "");
+        theQuiz.add(6, "Quiz4");
 
-                    default:
-                        ;
-
-                }
-            }
-        });
+        BarData barData = new BarData(theQuiz, barDataSet);
+        barChart.setDescription("");
+        barChart.setData(barData);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -81,6 +86,7 @@ public class menu extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -89,14 +95,21 @@ public class menu extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            i = 0;
+            barEntries.clear();
             super.onBackPressed();
         }
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.bar_chart, menu);
         return true;
     }
 
@@ -121,15 +134,22 @@ public class menu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
 
-        if (id == R.id.nav_stats) {
+        } else if (id == R.id.nav_slideshow) {
 
-            Intent statsIntent = new Intent(getApplicationContext(), stats.class);
-            startActivity(statsIntent);
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
         }
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }

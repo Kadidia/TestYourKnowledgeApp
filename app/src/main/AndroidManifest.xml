@@ -20,7 +20,56 @@
         <activity
             android:name=".menu"
             android:label="@string/title_activity_mon_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".stats"
+            android:label="@string/title_activity_stats"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".barChart"
+            android:label="@string/title_activity_bar_chart"
+            android:parentActivityName=".stats"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tyk.testyourknowledge.stats" />
+        </activity>
+        <activity
+            android:name=".barChartNode"
+            android:label="@string/title_activity_bar_chart"
+            android:parentActivityName=".stats"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tyk.testyourknowledge.stats" />
+        </activity>
+        <activity
+            android:name=".barChartJava"
+            android:label="@string/title_activity_bar_chart"
+            android:parentActivityName=".stats"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tyk.testyourknowledge.stats" />
+        </activity>
+        <activity
+            android:name=".barChartC"
+            android:label="@string/title_activity_bar_chart"
+            android:parentActivityName=".stats"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tyk.testyourknowledge.stats" />
+        </activity>
+        <activity
+            android:name=".barChartWebServices"
+            android:label="@string/title_activity_bar_chart"
+            android:parentActivityName=".stats"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tyk.testyourknowledge.stats" />
+        </activity>
     </application>
 
 </manifest>
