@@ -2,11 +2,14 @@ package com.example.tyk.testyourknowledge;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +62,56 @@ public class NewQuizzPage extends Activity {
             }
         });
 
+      if(getIntent().getExtras() != null)
+        {
+            try{
 
-        };
+                Bundle extras = getIntent().getExtras();
+             //   Log.i("afficher kkkk", extras.getString("afficher"));
+
+                if(extras.getString("afficher").equals("ok")){
+                    Log.i("contenu", "aaaa");
+
+                 //   View v =  quizListView.getChildAt(0);
+
+                   /* View v =  quizListView.getAdapter().getView(2, null, quizListView);
+                    Log.i("contenu", "gggggg");
+
+                    if(v == null)
+                        return;*/
+                    Log.i("contenu","fffff");
+                  /* TextView someText = (TextView) v.findViewById(R.id.itemName);
+                    ImageView image = (ImageView) v.findViewById(R.id.image);
+                    someText.setText("quizz 4");
+                    someText.setVisibility(View.VISIBLE);
+                    image.setVisibility(View.VISIBLE);*/
+
+                    //newQuizzPageAdapter = new NewQuizzPageAdapter(NewQuizzPage.this,
+                   //         listequiz );
+                    newQuizzPageAdapter.notifyDataSetChanged();
+                    quizListView.setAdapter(newQuizzPageAdapter);
+
+                    newQuizzPageAdapter.add("quiz 4");
+                    newQuizzPageAdapter.notifyDataSetChanged();
+
+                   // Log.i("contenu", someText.getText().toString());
+                   // v.setBackgroundColor(Color.GREEN);
+
+                    // someText.setText("Hi! I updated you manually!");
+                    // }
+                }else{
+                    Log.i("contenu", "booooof");
+
+                }
+
+            }catch (Exception e){
+                e.getMessage();
+            }
+
+
+
+        }
+
+
+        }
 }

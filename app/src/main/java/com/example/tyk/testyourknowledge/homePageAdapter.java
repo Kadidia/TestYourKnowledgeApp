@@ -52,10 +52,11 @@ public class homePageAdapter extends ArrayAdapter<String> {
 
         switch (itemViewHolder.name.getText().toString()){
             case "Mes cours" : itemViewHolder.image.setImageResource(R.drawable.qcm4); break;
-            case "Mes Quiz" : itemViewHolder.image.setImageResource(R.drawable.qcm6); break;
+            case "Mes Quizz" : itemViewHolder.image.setImageResource(R.drawable.qcm6); break;
             case "Messagerie" : itemViewHolder.image.setImageResource(R.drawable.msg); break;
             case "Mes notes" : itemViewHolder.image.setImageResource(R.drawable.note); break;
             case "Statistiques Quiz" : itemViewHolder.image.setImageResource(R.drawable.stat); break;
+            case "Courses Tutorials" : itemViewHolder.image.setImageResource(R.drawable.video); break;
             default:
                 itemViewHolder.image.setImageResource(R.drawable.logo);
                 break;

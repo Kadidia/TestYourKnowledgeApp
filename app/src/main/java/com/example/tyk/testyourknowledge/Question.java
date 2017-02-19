@@ -44,4 +44,13 @@ public class Question {
     public void setChoices(List<String> choices) {
         this.choices = choices;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "question='" + question + '\'' +
+                ", response='" + response + '\'' +
+                ", choices=" + choices +
+                '}';
+    }
 }

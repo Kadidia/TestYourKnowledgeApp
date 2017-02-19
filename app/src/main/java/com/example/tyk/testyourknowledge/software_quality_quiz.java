@@ -1,5 +1,10 @@
 package com.example.tyk.testyourknowledge;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,16 +16,21 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 public class software_quality_quiz extends AppCompatActivity implements View.OnClickListener{
 
@@ -39,6 +49,12 @@ public class software_quality_quiz extends AppCompatActivity implements View.OnC
      */
     private ViewPager mViewPager;
     private Button soumettreButton;
+    private AlphaAnimation inAnimation;
+    private AlphaAnimation outAnimation;
+    private boolean loadingTime = false;
+
+    private FrameLayout progressBarHolder;
+
 
 
     @Override
@@ -69,6 +85,8 @@ public class software_quality_quiz extends AppCompatActivity implements View.OnC
             }
         });*/
         soumettreButton = (Button) findViewById(R.id.b_soumettre);
+        progressBarHolder = (FrameLayout) findViewById(R.id.progressBarHolder2);
+
 
 
     }
@@ -102,6 +120,20 @@ public class software_quality_quiz extends AppCompatActivity implements View.OnC
             case R.id.b_soumettre :{
                 Toast.makeText(software_quality_quiz.this, "Quiz transferer avec succès !", Toast.LENGTH_LONG).show();
                 v.setEnabled(false);
+               /// startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=Db6Y82p89Rg")));
+                //Log.i("Video", "Video Playing....");
+
+                try {
+                   // new Task(this).execute(true);
+                 //   Intent intent = new Intent(getApplicationContext(), youTubeVideo.class);
+                    // intent.putExtra("userFirstName", user.getFirstname());
+                    Log.i("bouuuu", "222222");
+
+                 //   startActivity(intent);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
 
         }break;
@@ -163,8 +195,8 @@ public class software_quality_quiz extends AppCompatActivity implements View.OnC
                 case 0 : return new eMarketing_quiz_fragment();
                 case 1 : return new nodeJS_quiz_fragment();
                 case 2 : return new java_quiz_fragment();
-                case 3 : return new java_quiz_fragment();
-                case 4 : return new java_quiz_fragment();
+                case 3 : return new csharp_quiz_fragment();
+                case 4 : return new webservices_quiz_fragment();
                 default:
                     Toast.makeText(software_quality_quiz.this,"Erreur !", Toast.LENGTH_SHORT);break;
 
@@ -193,6 +225,53 @@ public class software_quality_quiz extends AppCompatActivity implements View.OnC
                     return "Web SERVICES";
             }
             return null;
+        }
+    }
+
+    private class Task extends AsyncTask<Boolean, Void, Boolean> {
+        private Activity activity;
+
+        public Task(){}
+        public Task(Activity activity){ this.activity = activity;}
+
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            //loginButton.setEnabled(false);
+            inAnimation = new AlphaAnimation(0f, 1f);
+            inAnimation.setDuration(200);
+            progressBarHolder.setAnimation(inAnimation);
+            progressBarHolder.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected  void onPostExecute(Boolean ok){
+            super.onPostExecute(ok);
+            outAnimation = new AlphaAnimation(1f, 0f);
+            outAnimation.setDuration(200);
+            progressBarHolder.setVisibility(View.GONE);
+            /*loginButton.setEnabled(true);*/
+
+            if(ok){
+                Log.i("bouuuu", "1111");
+
+                Intent intent = new Intent(activity, youTubeVideo.class);
+               // intent.putExtra("userFirstName", user.getFirstname());
+                Log.i("bouuuu", "222222");
+
+                activity.startActivity(intent);
+
+            }else{
+                Toast.makeText(software_quality_quiz.this, "bouuuuuuuu", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        @Override
+        protected Boolean doInBackground(Boolean... users){
+
+           return true;
+
+
         }
     }
 }

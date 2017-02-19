@@ -61,10 +61,11 @@ public class menu extends menu_principal
 
         List<String> items_list = new ArrayList<String>();
         items_list.add("Mes cours");
-        items_list.add("Mes Quiz");
+        items_list.add("Mes Quizz");
         items_list.add("Messagerie");
         items_list.add("Mes notes");
         items_list.add("Statistiques Quiz");
+        items_list.add("Courses Tutorials");
         items = (ListView) findViewById(R.id.list_item);
 
         Log.i("datas", "t1");
@@ -87,9 +88,12 @@ public class menu extends menu_principal
                     case "Mes cours":
                         Intent courseActivity = new Intent(menu.this, CoursePage.class);
                         startActivity(courseActivity);break;
-                    case "Mes Quiz":
+                    case "Mes Quizz":
                         Intent intent = new Intent(getApplicationContext(), modules_page.class);
                         startActivity(intent);break;
+                    case "Courses Tutorials":
+                        Intent coursesTutorials = new Intent(getApplicationContext(), youTubeVideo.class);
+                        startActivity(coursesTutorials);break;
 
                     default:
                         Toast.makeText(menu.this,"Page not found", Toast.LENGTH_SHORT);break;
@@ -164,8 +168,8 @@ public class menu extends menu_principal
         } else if (id == R.id.nav_exit) {
            Intent intent = new Intent(getApplicationContext(), authentification.class);
            startActivity(intent);
-        } /*else if (id == R.id.nav_slideshow) {
-
+        } /*else if (id == R.id.nav_videos) {
+           vf.setDisplayedChild(2);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

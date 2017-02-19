@@ -2,8 +2,6 @@ package com.example.tyk.testyourknowledge;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,11 +10,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class modules_page extends AppCompatActivity {
-    private UsersBDDHandler db;
+    private UsersBDDHandlerInLocal db;
     private ListView modules;
     private ModulePageAdapter adapter;
 
@@ -35,7 +32,7 @@ public class modules_page extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         }); */
-        db = new UsersBDDHandler(this);
+        db = new UsersBDDHandlerInLocal(this);
         modules = (ListView) findViewById(R.id.modules_list);
 
         try{

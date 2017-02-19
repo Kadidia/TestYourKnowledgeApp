@@ -33,9 +33,16 @@ public class CoursePage extends Activity {
         courseItems = (ListView) findViewById(R.id.ListCourseView);
 
         String[] courses = new String[]{
-                "course 1",
-                "course 2",
-                "course 3"
+                "e-MARKETING",
+                "JAVA",
+                "NODEJS",
+                "C#",
+                "WEB SERVICES",
+                "ANALYSE FINANCIERE",
+                "COMMUNICATION INTERPERSONNELLE",
+                "WEB SERVICES",
+                "WEB SERVICES"
+
         };
         List<String> listeCourse = new ArrayList<String>();
         for(int i=0; i< courses.length; i++ ){

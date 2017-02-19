@@ -43,6 +43,16 @@ public class NewQuizzPageAdapter extends ArrayAdapter<String> {
         itemViewHolder.quizName.setText(data);
         itemViewHolder.quizImage.setImageResource(R.drawable.qcm4);
 
+        switch (itemViewHolder.quizName.getText().toString()){
+            case "quiz yy" : itemViewHolder.quizName.setVisibility(View.INVISIBLE);
+                itemViewHolder.quizImage.setVisibility(View.INVISIBLE); break;
+            default:
+               // itemViewHolder.image.setImageResource(R.drawable.logo);
+                break;
+
+
+        }
+
         return convertView;
     }
 

@@ -144,14 +144,14 @@ public class quiz_eleve extends menu_principal{
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 1;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "JAVA";
+                    return "C#";
                 case 1:
                     return "WEB SERVICE";
                 case 2:

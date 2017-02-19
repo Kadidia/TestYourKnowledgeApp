@@ -25,6 +25,12 @@
     <string name="Question">Question</string>
     <string name="title_activity_modules_page">modules_page</string>
     <string name="title_activity_software_quality_quiz">software_quality_quiz</string>
+    <string name="title_logo">NATIONAL GEOGRAPHIC</string>
+    <string name="btn_skip_intro">Skip Intro</string>
+
+
+    <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
+    <string name="title_activity_you_tube_video">youTubeVideo</string>
 
 
 </resources>

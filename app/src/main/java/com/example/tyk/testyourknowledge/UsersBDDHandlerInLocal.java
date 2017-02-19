@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
  * Created by Axa on 29/01/2017.
  */
 
-public class UsersBDDHandler extends SQLiteOpenHelper{
+public class UsersBDDHandlerInLocal extends SQLiteOpenHelper{
     private ArrayList<User> users;
     private ArrayList<Module> modules;
     private static final int DATABASE_VERSION = 1;
@@ -114,7 +114,7 @@ public class UsersBDDHandler extends SQLiteOpenHelper{
     private static final String TABLE_MODULE_INFO_DELETE = "DROP TABLE IF EXISTS " + MODULE_INFO_TABLE_NAME;
 
 
-    public UsersBDDHandler( Context context){
+    public UsersBDDHandlerInLocal(Context context){
 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
